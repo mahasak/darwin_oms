@@ -18,10 +18,12 @@ config :darwin_oms, DarwinOms.Repo,
 config :darwin_oms, DarwinOmsWeb.Endpoint,
   http: [port: 4000],
   https: [
-    port: 4443,
-    keyfile: "/Users/mpijittum/src/bigbears/darwin_oms/dev.key",
-    certfile: "/Users/mpijittum/src/bigbears/darwin_oms/dev.crt"
+    port: 4001,
+    cipher_suite: :strong,
+    certfile: "priv/cert/selfsigned.pem",
+    keyfile: "priv/cert/selfsigned_key.pem"
   ],
+  force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil,hsts: true],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
