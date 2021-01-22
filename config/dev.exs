@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :darwin_oms, DarwinOms.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "bigbears",
+  password: "bigbears",
   database: "darwin_oms_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -17,6 +17,11 @@ config :darwin_oms, DarwinOms.Repo,
 # with webpack to recompile .js and .css sources.
 config :darwin_oms, DarwinOmsWeb.Endpoint,
   http: [port: 4000],
+  https: [
+    port: 4443,
+    keyfile: "/Users/mpijittum/src/bigbears/darwin_oms/dev.key",
+    certfile: "/Users/mpijittum/src/bigbears/darwin_oms/dev.crt"
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
