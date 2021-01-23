@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :darwin, Darwin.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "bigbears",
+  password: "bigbears",
   database: "darwin_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
@@ -15,7 +15,7 @@ config :darwin, Darwin.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :darwin_web, DarwinWeb.Endpoint,
+config :darwin, DarwinWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -26,7 +26,7 @@ config :darwin_web, DarwinWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../apps/darwin_web/assets", __DIR__)
+      cd: Path.expand("../assets", __DIR__)
     ]
   ]
 
@@ -55,7 +55,7 @@ config :darwin_web, DarwinWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :darwin_web, DarwinWeb.Endpoint,
+config :darwin, DarwinWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
@@ -68,9 +68,9 @@ config :darwin_web, DarwinWeb.Endpoint,
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
-# Initialize plugs at runtime for faster development compilation
-config :phoenix, :plug_init_mode, :runtime
-
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+# Initialize plugs at runtime for faster development compilation
+config :phoenix, :plug_init_mode, :runtime

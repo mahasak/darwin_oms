@@ -1,4 +1,4 @@
-defmodule DarwinWeb.Application do
+defmodule Darwin.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -7,17 +7,21 @@ defmodule DarwinWeb.Application do
 
   def start(_type, _args) do
     children = [
+      # Start the Ecto repository
+      Darwin.Repo,
       # Start the Telemetry supervisor
       DarwinWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: Darwin.PubSub},
       # Start the Endpoint (http/https)
       DarwinWeb.Endpoint
-      # Start a worker by calling: DarwinWeb.Worker.start_link(arg)
-      # {DarwinWeb.Worker, arg}
+      # Start a worker by calling: Darwin.Worker.start_link(arg)
+      # {Darwin.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: DarwinWeb.Supervisor]
+    opts = [strategy: :one_for_one, name: Darwin.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
