@@ -1,10 +1,10 @@
 use Mix.Config
 
 # Configure your database
-config :darwin_oms, DarwinOms.Repo,
-  username: "bigbears",
-  password: "bigbears",
-  database: "darwin_oms_dev",
+config :darwin, Darwin.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "darwin_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -15,15 +15,8 @@ config :darwin_oms, DarwinOms.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :darwin_oms, DarwinOmsWeb.Endpoint,
+config :darwin_web, DarwinWeb.Endpoint,
   http: [port: 4000],
-  https: [
-    port: 4001,
-    cipher_suite: :strong,
-    certfile: "priv/cert/selfsigned.pem",
-    keyfile: "priv/cert/selfsigned_key.pem"
-  ],
-  force_ssl: [rewrite_on: [:x_forwarded_proto], host: nil,hsts: true],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -33,7 +26,7 @@ config :darwin_oms, DarwinOmsWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
+      cd: Path.expand("../apps/darwin_web/assets", __DIR__)
     ]
   ]
 
@@ -62,22 +55,22 @@ config :darwin_oms, DarwinOmsWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :darwin_oms, DarwinOmsWeb.Endpoint,
+config :darwin_web, DarwinWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/darwin_oms_web/(live|views)/.*(ex)$",
-      ~r"lib/darwin_oms_web/templates/.*(eex)$"
+      ~r"lib/darwin_web/(live|views)/.*(ex)$",
+      ~r"lib/darwin_web/templates/.*(eex)$"
     ]
   ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
+# Initialize plugs at runtime for faster development compilation
+config :phoenix, :plug_init_mode, :runtime
+
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
-
-# Initialize plugs at runtime for faster development compilation
-config :phoenix, :plug_init_mode, :runtime
