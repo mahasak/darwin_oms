@@ -1,3 +1,3 @@
 defmodule DarwinWeb.UserView do
-    use DarwinWeb, :view
+  use DarwinWeb, :view
 end
