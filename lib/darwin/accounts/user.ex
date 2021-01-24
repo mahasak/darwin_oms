@@ -1,6 +1,8 @@
 defmodule Darwin.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Darwin.Accounts.User
+  alias Comeonin.Bcrypt
 
   schema "users" do
     field :is_active, :boolean, default: false
@@ -12,9 +14,11 @@ defmodule Darwin.Accounts.User do
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:login_name, :password, :is_active, :is_deleted])
+    |> unique_constraint(:username)
     |> validate_required([:login_name, :password, :is_active, :is_deleted])
+    |> update_change(:password, &Bcrypt.hashpwsalt/1)
   end
 end

@@ -16,7 +16,7 @@ defmodule DarwinWeb.Router do
 
   scope "/", DarwinWeb do
     pipe_through :browser
-
+    resources "/users", UserController, only: [:create, :new]
     live "/", PageLive, :index
   end
 
@@ -37,6 +37,7 @@ defmodule DarwinWeb.Router do
 
     scope "/" do
       pipe_through :browser
+      resources "/registrations", UserController, only: [:create, :new]
       live_dashboard "/dashboard", metrics: DarwinWeb.Telemetry
     end
   end
