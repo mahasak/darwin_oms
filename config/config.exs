@@ -18,6 +18,11 @@ config :darwin, DarwinWeb.Endpoint,
   pubsub_server: Darwin.PubSub,
   live_view: [signing_salt: "DK2KBfpj"]
 
+config :kaffy,
+  otp_app: :darwin,
+  ecto_repo: Darwin.Repo,
+  router: DarwinWeb.Router
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
