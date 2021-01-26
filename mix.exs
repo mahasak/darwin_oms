@@ -50,6 +50,8 @@ defmodule Darwin.MixProject do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:kaffy, "~> 0.9.0"},
+      {:torch, "~> 3.4"},
+      {:filtrex, "~> 0.4.3"},
     ]
   end
 

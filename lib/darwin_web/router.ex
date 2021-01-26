@@ -1,6 +1,6 @@
 defmodule DarwinWeb.Router do
   use DarwinWeb, :router
-  use Kaffy.Routes, scope: "/admin"
+  use Kaffy.Routes, scope: "/kaffy"
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -21,6 +21,11 @@ defmodule DarwinWeb.Router do
     resources "/registrations", UserController, only: [:create, :new, :index, :show, :edit, :delete]
     live "/", PageLive, :index
     
+  end
+
+  scope "/admin", DarwinWeb.Admin, as: :admin do
+    pipe_through :browser
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
