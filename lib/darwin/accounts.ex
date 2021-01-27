@@ -102,14 +102,5 @@ defmodule Darwin.Accounts do
     User.changeset(user, attrs)
   end
 
-  defp do_paginate_users(filter, params) do
-    credential_params = Map.get(params, "credentials")
-    params = Map.drop(params, ["credentials"])
   
-    User
-    |> Filtrex.query(filter)
-    |> credential_filters(credential_params)
-    |> order_by(^sort(params))
-    |> paginate(Repo, params, @pagination)
-  end
 end

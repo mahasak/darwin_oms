@@ -21,4 +21,6 @@ defmodule Darwin.Accounts.User do
     |> validate_required([:login_name, :password, :is_active, :is_deleted])
     |> update_change(:password, &Bcrypt.hashpwsalt/1)
   end
+
+
 end
