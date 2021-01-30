@@ -51,6 +51,7 @@ defmodule Darwin.MixProject do
       {:bcrypt_elixir, "~> 1.0"},
       {:kaffy, "~> 0.9.0"},
       {:filtrex, "~> 0.4.3"},
+      {:absinthe, "~> 1.5.0"}
     ]
   end
 
