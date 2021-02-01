@@ -27,18 +27,11 @@ defmodule DarwinWeb.Endpoint do
     only: ~w(css fonts images js favicon.ico robots.txt)
 
   plug Plug.Static,
-    at: "/kaffy",
+    at: "/admin",
     from: :kaffy,
     gzip: false,
     only: ~w(assets)
-  
-  plug(
-    Plug.Static,
-    at: "/torch",
-    from: {:torch, "priv/static"},
-    gzip: true,
-    cache_control_for_etags: "public, max-age=86400"
-  )
+
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
