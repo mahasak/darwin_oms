@@ -28,8 +28,7 @@ defmodule DarwinWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      get "/registrations/list", UserController, :index
-      resources "/registrations", UserController, only: [:create, :new, :index, :show,  :edit, :delete]
+      
       live_dashboard "/dashboard", metrics: DarwinWeb.Telemetry
     end
   end
